@@ -3,10 +3,11 @@
     <div class="header">
       <h1>Piggy Grow <img src="./assets/piggy-bank-1022853_960_720.png" width="70px" height="70px" align=middle></h1>
       <nav>
-        <button v-on:click="Movement" >Nuevo Movimiento</button>
-        <button v-on:click="mostrarConsulta">Consultar Movimientos</button>
+         <button v-on:click="init" v-if="is_auth" > Inicio </button>
+        <button v-on:click="Movement" v-if="is_auth" >Nuevo Movimiento</button>
+        <button v-on:click="mostrarConsulta" v-if="is_auth">Consultar Movimientos</button>
         <button>Eliminar movimiento </button>
-        <button>Cerrar Sesión</button>
+        <button v-on:click="logOut" v-if="is_auth">Cerrar Sesión</button>
       </nav>
     </div>
 
@@ -31,6 +32,7 @@
 import consulta from './components/consulta'
 import Movimiento from './components/Movimiento'
 import reportes from './components/reportes'
+import userLogueo from './components/userLogueo'
 
 export default {
   name: "App",
@@ -38,7 +40,8 @@ export default {
   components: {
     Movimiento,
     consulta,
-    reportes
+    reportes,
+    userLogueo
   },
     
 /*data: function () {
@@ -48,6 +51,38 @@ export default {
   },*/
 
   methods: {
+    updateAuth: function(){
+      var self = this
+      self.is_auth  = localStorage.getItem('isAuth') || false
+
+      if(self.is_auth == false)
+        self.$router.push({name: "user_auth"})
+
+      else{
+        let username = localStorage.getItem("current_username")
+        self.$router.push({name: "user", params:{ username: username }})
+      }  
+    },
+
+    logIn: function(username){
+      localStorage.setItem('current_username', username)
+      localStorage.setItem('isAuth', true)
+      this.updateAuth()
+    },
+
+    logOut: function(){
+      localStorage.removeItem('isAuth')
+      localStorage.removeItem('current_username')
+      this.updateAuth()
+    },
+
+    init: function(){
+      if(this.$route.name != "user"){
+        let username = localStorage.getItem("current_username")
+        this.$router.push({name: "user", params:{ username: username }})
+      } 
+    },
+
     Movement: function() {
       this.$router.push({ name: "crear_movimiento" });
     },

@@ -41,6 +41,7 @@ export default {
     axios
       .get("https://piggy-grow.herokuapp.com/mov")
       /*.get("http://localhost:8000/mov")  */
+      /*.get("https://piggy-backend-v2.herokuapp.com/)*/
       .then(respuesta => {
         this.movimiento = respuesta.data;
       })
