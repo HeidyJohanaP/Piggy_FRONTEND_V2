@@ -3,11 +3,29 @@ import Movimiento from './components/Movimiento'
 import consulta from './components/consulta'
 import App from './App'
 import reportes from './components/reportes'
-
+import logIn from './components/logIn'
+import register from './components/register'
 
 const router = new vueRouter({
 
     routes: [
+        {
+            path: '/',
+            name: "root",
+            component: App
+        },
+
+        {
+            path: '/login',
+            name: "login",
+            component: logIn
+        },
+
+        {
+            path: '/register',
+            name: "register",
+            component: register
+        },
 
         {
             path: '/mov/nuevo',
