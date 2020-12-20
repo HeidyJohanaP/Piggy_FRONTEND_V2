@@ -2,21 +2,27 @@
   <div id="logIN" class="login">
     <div class="container_user_login">
       <h2>Bienvenido a PiggyGrow!</h2>
+      <br />
 
-      <form v-on:submit.prevent="processUserLogueo">
+      <form v-on:submit.prevent="processLogueo">
+        
         <label for="exampleInputEmail1" class="form-label">Email address</label>
         <input type="text" v-model="user_in.username" placeholder="Username" />
         <br />
-        <input
-          type="password"
-          v-model="user_in.password"
-          placeholder="Password"
-        />
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" v-model="user_in.password" placeholder="Password"/>
         <br />
-        <button type="submit" v-on:click="InicioSesion">Iniciar Sesion</button>
-        <button type="submit">Google</button>
-        <button type="submit">Facebook</button>
+        <button type="submit">Iniciar Sesion</button>
+        <br />
+
+        <label class="form-label2">O iniciar sesión con </label>
+        <br />
+        <button type="submit" class="btn2">Google</button>
+        <button type="submit" class="btn3">Facebook</button>
+        <label> ¿No tienes una cuenta? Registrarse</label>
+
       </form>
+  
     </div>
   </div>
 </template>
@@ -24,19 +30,20 @@
 <script>
 import axios from "axios";
 export default {
-  name: "user_login",
+  name: "login",
 
   data: function() {
     return {
       user_in: {
-        username: "",
-        password: ""
+        username: "Heidy",
+        password: "1234"
       }
-    };
+    }
   },
 
   methods: {
-    processUserLogueo: function() {
+
+    processLogueo: function() {
       var self = this;
       axios
         .post("http://127.0.0.1:8000/logIn", self.user_in, { headers: {} })
@@ -52,28 +59,41 @@ export default {
             alert("ERROR 403: Contraseña Erronea.");
         });
     }
-  }
+  },
+  
+  /*validations:{
+    user:{
+      email:{
+        required,
+        minLength:minLength(4)
+
+      },
+      password:{
+        required,
+        minLength:minLength(5)
+      }
+    }
+  }*/
 };
 </script>
 
 <style scoped>
-
 .login {
   margin: 0;
-  padding: 0%;
+  padding: 14em;
   height: 100%;
   width: 100%;
   display: flex;
 
   background-image: url(../assets/FondoLogueo.jpg);
-  background-position: center center;
+  background-position: center;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: cover;
+  background-attachment: fixed;
+  
 }
 
 .container_user_login {
-  
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -89,11 +109,8 @@ export default {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.login form {
-  width: 50%;
-}
-
 .login h2 {
+  /* Title */
   font-family: Montserrat;
   font-style: normal;
   font-weight: bold;
@@ -101,11 +118,24 @@ export default {
   line-height: 44px;
   color: #e5e7e9;
   left: 52px;
-  top: 20%;
+
+  /* Bienvenido a PiggyGrow! */
+  position: absolute;
+  width: 475px;
+  height: 44px;
+  left: 52px;
+  top: 3%;
 }
 
 .login form {
-  width: 50%;
+  width: 80%;
+  
+}
+
+.login label {
+  color: #e5e7e9;
+  justify-content: center;
+  align-items: center;
 }
 
 .login input {
@@ -116,7 +146,10 @@ export default {
   padding: 10px 20px;
   margin: 5px 0;
 
-  border: 1px solid #283747;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));
+  background: #1e2126;
+  border-radius: 6px;
+
 }
 
 .login button {
@@ -124,12 +157,14 @@ export default {
   height: 40px;
 
   color: #e5e7e9;
-  background: #283747;
   border: 1px solid #e5e7e9;
+  background: linear-gradient(180deg, #3969fc 0%, #224499 100%);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 9px;
 
-  border-radius: 5px;
   padding: 10px 25px;
   margin: 5px 0;
+
 }
 
 .login button:hover {
