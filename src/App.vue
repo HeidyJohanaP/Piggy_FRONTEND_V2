@@ -18,9 +18,8 @@
       <router-view v-on:log-in="logIn"></router-view>
     </div>
 
-    <div v-dragscroll> ... </div>
-    
-    <div v-dragscroll="true"> ... </div> 
+    <!--<div v-dragscroll> ... </div>
+    <div v-dragscroll="true"> ... </div> !-->
     
 
     <div class="footer" v-if="is_auth">
@@ -97,28 +96,25 @@ export default {
     mostrarConsulta: function() {
       this.$router.push({ name: "consulta" })    
   
-  },
+    },
 
     verReporte: function() {
       this.$router.push({ name: "reporte"})
     },
    
-  created: function(){
+    created: function(){
       this.$router.push({name: "root"})
       this.updateAuth()
-  }
+    }
 
-},
-
+  },
   beforeCreate: function() {
     if (this.$route.name !="login"){
       this.$router.push({ name: "login"});
     }
   },
 
-
 };
-
 
 </script>
 
@@ -130,17 +126,15 @@ export default {
   .app-container {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: auto;
     height:auto;
     
   }
 
-
   .header {
     margin: 0%;
-    padding: 0;
     width: 100%;
-    height: 10vh;
+    height: auto;
     min-height: 100px;
     background-color: pink;
     color:black;
@@ -148,7 +142,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     font-family: serif;
-    position: fixed;
+    
   }
 
   .header h1 {
@@ -178,7 +172,7 @@ export default {
     font-family: Arial,Helvetica,sans-serif;
     font-size: 16px;
     margin: auto;
-    display: inline-block;
+    display: flex;
     
   }
 
@@ -207,7 +201,7 @@ export default {
     height:5rem;
     background-color:pink;
     color: #000000; 
-    position: fixed;
+    position: relative;
     bottom: 0;
 
   }

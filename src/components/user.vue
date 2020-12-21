@@ -50,10 +50,9 @@
 
     
     #User h3{
-        
         position: relative; 
         left: 90px; 
-        top: 298px; 
+        top: 200px; 
         width: 100px; 
         height: 300px;
     }

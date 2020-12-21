@@ -111,6 +111,7 @@ export default {
 
   background: rgba(0, 0, 0, 0.5);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  
 }
 
 .login h2 {
@@ -145,24 +146,25 @@ export default {
 .login input {
   height: 40px;
   width: 95%;
-
   box-sizing: border-box;
   padding: 0px 10px;
   margin: 5px 10px;
 
- 
   background: rgba(255, 255, 255, 0.5);
   border-radius: 6px;
   border-block-color: black;
+
 }
+.login input:focus{
+  border:none; 
+  color:inherit;
+}
+
 
 .login button:hover {
   color: #e5e7e9;
   background: crimson;
   border: 1px solid #283747;
-}
-.input1{
-  top:200px;
 }
 
 .btn1 {

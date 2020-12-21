@@ -55,8 +55,8 @@ export default {
             };
         
             axios
-                .post("https://piggy-grow.herokuapp.com/mov/nuevo", datosJSON)
-               /*.post("http://localhost:8000/mov/nuevo", datosJSON) */
+                //.post("https://piggy-grow.herokuapp.com/mov/nuevo", datosJSON)
+                .post("http://localhost:8000/mov/nuevo", datosJSON) 
                 .then(respuesta => {
                     alert(respuesta.data.message);
                 })
