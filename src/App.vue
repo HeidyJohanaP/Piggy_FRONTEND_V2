@@ -1,28 +1,29 @@
 <template>
   <div id="app" class="app-container">
-    <div class="header">
+    <div class="header" v-if="is_auth">
       <h1>Piggy Grow <img src="./assets/piggy-bank-1022853_960_720.png" width="70px" height="70px" align=middle></h1>
+      
       <nav class="navbar-nav ml-auto">
         <button v-on:click="init" v-if="is_auth" > Inicio </button>
         <button v-on:click="Movement" v-if="is_auth">Nuevo Movimiento</button>
         <button v-on:click="mostrarConsulta" v-if="is_auth">Consultar Movimientos</button>
         <button v-if="is_auth">Reporte Movimientos</button>
         <button v-if="is_auth">Eliminar Movimientos </button>
-        <button type="submit" class="btn_InicioSesion" v-on:click="logIn">Iniciar Sesion</button>
         <button v-on:click="logOut" v-if="is_auth">Cerrar Sesión</button>
       </nav>
+
     </div>
 
     <div class="main-component">
-      <router-view v-on:log-in="logIn">login</router-view>
+      <router-view v-on:log-in="logIn"></router-view>
     </div>
 
-    <!-- <div v-dragscroll> ... </div>
+    <div v-dragscroll> ... </div>
     
-    <div v-dragscroll="true"> ... </div> -->
+    <div v-dragscroll="true"> ... </div> 
     
 
-    <div class="footer">
+    <div class="footer" v-if="is_auth">
       <h2>Copyright @PiggyGrow Inc.</h2>
     </div>
     
@@ -31,23 +32,24 @@
 </template>
 
 <script>
+import vueRouter from 'vue-router'
 
-import consulta from './components/consulta'
+/*import consulta from './components/consulta'
 import Movimiento from './components/Movimiento'
 import reportes from './components/reportes'
 import logIn from './components/logIn'
-import user from './components/user'
+import User from './components/User'*/
 
 export default {
   name: "App",
 
-  components: {
+  /*components: {
     Movimiento,
     consulta,
     reportes,
     logIn,
-    user
-  },
+    User
+  },*/
     
   data: function () {
     return {
@@ -65,7 +67,7 @@ export default {
 
       else{
         let username = localStorage.getItem("current_username")
-        self.$router.push({name: "crear_movimiento", params:{ username: username }})
+        self.$router.push({name: "user", params:{ username: username }})
       }  
     },
 
@@ -146,6 +148,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     font-family: serif;
+    position: fixed;
   }
 
   .header h1 {
@@ -185,7 +188,7 @@ export default {
     border: 1px solid #e5e7e9;
   }
 
-  main-component {
+  .main-component {
     height: 100%;
     margin: 0%;
     padding: 0%;
@@ -204,6 +207,8 @@ export default {
     height:5rem;
     background-color:pink;
     color: #000000; 
+    position: fixed;
+    bottom: 0;
 
   }
 

@@ -1,12 +1,16 @@
 import vueRouter from 'vue-router'
+
 import Movimiento from './components/Movimiento'
 import consulta from './components/consulta'
 import App from './App'
 import reportes from './components/reportes'
+import User from './components/User'
 import logIn from './components/logIn'
 import register from './components/register'
 
 const router = new vueRouter({
+    mode: 'history',
+    base: __dirname,
 
     routes: [
         {
@@ -15,14 +19,14 @@ const router = new vueRouter({
             component: App
         },
 
-        /*{
+        {
             path: '/user/:username',
             name: "user",
-            component: user
-        },*/
+            component: User
+        },
 
         {
-            path: '/login',
+            path: '/usuario/autenticar',
             name: "login",
             component: logIn
         },
