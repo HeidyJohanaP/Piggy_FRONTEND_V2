@@ -2,7 +2,7 @@
     <div id="User">
         <h2>Hola  <span> {{username}}, </span>  ¡Bienvenido!</h2>
         <br/>
-        <h3><img src="../assets/piggyBienvenida.png"  width="400" align="center"></h3>
+        <h3><img src="../assets/piggyBienvenida.png"  width="400" align='left'></h3>
     </div>
 </template>
 
@@ -51,7 +51,7 @@
     
     #User h3{
         position: relative; 
-        left: 90px; 
+        left: 45px; 
         top: 200px; 
         width: 100px; 
         height: 300px;

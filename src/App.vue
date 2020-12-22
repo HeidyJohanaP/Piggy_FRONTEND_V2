@@ -3,8 +3,8 @@
     <div class="header" v-if="is_auth">
       <h1>Piggy Grow <img src="./assets/piggy-bank-1022853_960_720.png" width="70px" height="70px" align=middle></h1>
       
-      <nav class="navbar-nav ml-auto">
-        <button v-on:click="init" v-if="is_auth" > Inicio </button>
+      <nav class="navbar-nav ml-auto" v-if="is_auth">
+        <button v-on:click="init" v-if="is_auth" >Inicio</button>
         <button v-on:click="Movement" v-if="is_auth">Nuevo Movimiento</button>
         <button v-on:click="mostrarConsulta" v-if="is_auth">Consultar Movimientos</button>
         <button v-if="is_auth">Reporte Movimientos</button>
@@ -33,23 +33,9 @@
 <script>
 import vueRouter from 'vue-router'
 
-/*import consulta from './components/consulta'
-import Movimiento from './components/Movimiento'
-import reportes from './components/reportes'
-import logIn from './components/logIn'
-import User from './components/User'*/
-
 export default {
   name: "App",
-
-  /*components: {
-    Movimiento,
-    consulta,
-    reportes,
-    logIn,
-    User
-  },*/
-    
+  
   data: function () {
     return {
       is_auth: localStorage.getItem("isAuth") || false,
@@ -90,12 +76,13 @@ export default {
     },
 
     Movement: function() {
-      this.$router.push({ name: "crear_movimiento" });
+      let username = localStorage.getItem("current_username")       
+      this.$router.push({ name: "crear_movimiento", params:{ username: username } });
     },
 
     mostrarConsulta: function() {
-      this.$router.push({ name: "consulta" })    
-  
+      let username = localStorage.getItem("current_username")      
+      this.$router.push({ name: "consulta", params:{ username: username } })     
     },
 
     verReporte: function() {
@@ -109,6 +96,7 @@ export default {
 
   },
   beforeCreate: function() {
+    localStorage.removeItem('isAuth')    
     if (this.$route.name !="login"){
       this.$router.push({ name: "login"});
     }
@@ -118,7 +106,8 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
+
   body {
     margin: 0 0 0 0;
   }
@@ -127,7 +116,7 @@ export default {
     display: flex;
     flex-direction: column;
     width: auto;
-    height:auto;
+    height: auto;
     
   }
 
@@ -159,7 +148,7 @@ export default {
     font-size: 20px;
     justify-content: space-between;
     margin-right: auto;
-    margin-left: auto;
+    margin-left: 15%;
     
   }
 
@@ -173,7 +162,10 @@ export default {
     font-size: 16px;
     margin: auto;
     display: flex;
-    
+    height: 4em;
+    text-justify: center;
+    text-align: center;
+    align-items: center;
   }
 
    .header nav button:hover {
@@ -198,12 +190,12 @@ export default {
     align-items: center;
     justify-content: center;
     width: 100%;
-    height:5rem;
+    height: 5em;
     background-color:pink;
     color: #000000; 
-    position: relative;
     bottom: 0;
-
+    margin-top: 5%;
+    margin-bottom: 0;
   }
 
   .footer h2 {
@@ -213,5 +205,8 @@ export default {
     justify-content: center;
     align-items: center;
     font-size: 16px;
+    padding: 2 em;
+    margin: 0;
   }
+
 </style>

@@ -47,7 +47,8 @@ export default {
     processLogueo: function () {
       var self = this;
       axios
-        .post("http://127.0.0.1:8000/usuario/autenticar", self.user_in, {
+        //.post("http://127.0.0.1:8000/usuario/autenticar", self.user_in, {
+        .post("https://piggy-grow.herokuapp.com/usuario/autenticar", self.user_in, {          
           headers: {},
         })
         .then((result) => {
@@ -64,19 +65,6 @@ export default {
     },
   },
 
-  /*validations:{
-    user:{
-      email:{
-        required,
-        minLength:minLength(4)
-
-      },
-      password:{
-        required,
-        minLength:minLength(5)
-      }
-    }
-  }*/
 };
 </script>
 
@@ -104,6 +92,7 @@ export default {
   padding: 0em;
 
   position: absolute;
+  /*position: sticky;*/
   width: 45%;
   height: 90%;
   left: 47px;
@@ -204,8 +193,7 @@ export default {
   left: 312px;
   top: 440px;
 
-  /* Ligth 50 */
-  color: #fffcfc;
+    color: #fffcfc;
   border: 1px solid rgba(255, 255, 255, 0.5);
   box-sizing: border-box;
   border-radius: 9px;

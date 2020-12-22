@@ -34,14 +34,15 @@ export default {
   name: "consulta",
   data: function() {
     return {
-      movimiento: []
+      movimiento: [],
+      username: ""
     };
   },
    beforeCreate: function() {
+    this.username = this.$route.params.username     
     axios
-      /*.get("https://piggy-grow.herokuapp.com/mov")*/
-      .get("http://localhost:8000/mov")  
-      /*.get("https://piggy-backend-v2.herokuapp.com/)*/
+      .get("https://piggy-grow.herokuapp.com/usuario_mov", { params: { user: this.username }})
+      /*.get("http://localhost:8000/usuario_mov", { params: { user: this.username }})*/  
       .then(respuesta => {
         this.movimiento = respuesta.data;
       })
@@ -68,7 +69,7 @@ export default {
 }
 
 .tb_movimientos {
-  width: 50%;
+  width: 60%;
   border-collapse: collapse;
 }
 
@@ -100,5 +101,9 @@ export default {
 .tb_movimientos td:nth-child(2),
   .tb_movimientos td:nth-child(4) {
   text-align: center;
+}
+
+.tb_movimientos td:nth-child(2) {
+  min-width: 100px;
 }
 </style>

@@ -1,11 +1,6 @@
 <template>
   <div id="Movimiento">
     <h2>NUEVO MOVIMIENTO</h2><br /><br />
-    
-    <!--<div>
-      <label>id: </label>
-      <input v-model="id" id="id" type="number" /><br /><br /> 
-    </div>-->
 
     <label>Tipo: </label>
     <select v-model="tipo" id="tipo" name="TipoMov">
@@ -33,12 +28,13 @@ export default {
     data: function() {
         return {
 
-            id: 10,
+            id: "",
             tipo: "",
             fecha: "",
             valor: "",
             categoria: "",
-            descripcion: "",            
+            descripcion: "", 
+            usuario: ""           
         }
     },
 
@@ -50,32 +46,24 @@ export default {
                 fecha: this.fecha,
                 valor: this.valor,
                 categoria: this.categoria,
-                descripcion: this.descripcion
-                
+                descripcion: this.descripcion,
+                usuario: this.$route.params.username
             };
         
             axios
-                //.post("https://piggy-grow.herokuapp.com/mov/nuevo", datosJSON)
-                .post("http://localhost:8000/mov/nuevo", datosJSON) 
+                .post("https://piggy-grow.herokuapp.com/mov", datosJSON)
+                //.post("http://localhost:8000/mov", datosJSON) 
                 .then(respuesta => {
                     alert(respuesta.data.message);
                 })
                 .catch(error => {
                     alert(error.response.data.detail);
-                    //alert("Error en el servidor.");
                 });
 
-
-        //alert("Se creó un nuevo movimiento.")
         }
             
     },
 
-/*
-created: function() {
-    this.datoRecibido = this.$route.params.dato;
-    }
-    */
 
 };
 
