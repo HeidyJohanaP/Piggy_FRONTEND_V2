@@ -44,7 +44,7 @@ const router = new vueRouter({
         },
         {
             name: "consulta",
-            path: "/mov",
+            path: "usuario_mov",
             component: consulta
         },
         {
