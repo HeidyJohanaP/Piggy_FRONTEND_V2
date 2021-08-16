@@ -91,7 +91,7 @@ export default {
   align-items: center;
   padding: 0em;
 
-  position: absolute;
+  position: fixed;
   /*position: sticky;*/
   width: 45%;
   height: 90%;

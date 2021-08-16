@@ -7,7 +7,7 @@
         <button v-on:click="init" v-if="is_auth" >Inicio</button>
         <button v-on:click="Movement" v-if="is_auth">Nuevo Movimiento</button>
         <button v-on:click="mostrarConsulta" v-if="is_auth">Consultar Movimientos</button>
-        <button v-if="is_auth">Reporte Movimientos</button>
+        <button v-on:click="verReporte" v-if="is_auth">Reporte Movimientos</button>
         <button v-if="is_auth">Eliminar Movimientos </button>
         <button v-on:click="logOut" v-if="is_auth">Cerrar Sesión</button>
       </nav>
@@ -86,7 +86,8 @@ export default {
     },
 
     verReporte: function() {
-      this.$router.push({ name: "reporte"})
+      let username = localStorage.getItem("current_username")       
+      this.$router.push({ name: "reporte", params:{ username: username }})
     },
    
     created: function(){
@@ -131,7 +132,10 @@ export default {
     justify-content: space-between;
     align-items: center;
     font-family: serif;
-    
+    position: fixed;
+    z-index: 1;
+    top: 0%;
+    left: 0%;
   }
 
   .header h1 {
@@ -183,6 +187,8 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    margin-top: 10%;
   }
 
   .footer {

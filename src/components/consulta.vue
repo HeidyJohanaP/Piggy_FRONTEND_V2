@@ -42,7 +42,7 @@ export default {
     this.username = this.$route.params.username     
     axios
       .get("https://piggy-grow.herokuapp.com/usuario_mov", { params: { user: this.username }})
-      /*.get("http://localhost:8000/usuario_mov", { params: { user: this.username }})*/  
+      //.get("http://localhost:8000/usuario_mov", { params: { user: this.username }})  
       .then(respuesta => {
         this.movimiento = respuesta.data;
       })
