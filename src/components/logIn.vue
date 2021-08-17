@@ -47,8 +47,8 @@ export default {
     processLogueo: function () {
       var self = this;
       axios
-        //.post("http://127.0.0.1:8000/usuario/autenticar", self.user_in, {
-        .post("https://piggy-grow.herokuapp.com/usuario/autenticar", self.user_in, {          
+        //.post("http://127.0.0.1:8000/autenticar", self.user_in, {
+        .post("https://piggy-grow.herokuapp.com/autenticar", self.user_in, {          
           headers: {},
         })
         .then((result) => {
